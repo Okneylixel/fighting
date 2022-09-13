@@ -144,7 +144,6 @@ function determineWinner({ player, enemy, timerId }) {
       document.querySelector('#displayText').innerHTML = 'Player Two Wins The Battle!'
    }
 }
-
 let timer = 60
 let timerId
 function decreaseTimer() {
@@ -159,7 +158,6 @@ function decreaseTimer() {
       determineWinner({ player, enemy, timerId })
    }
 }
-
 decreaseTimer()
 
 function animate() {
