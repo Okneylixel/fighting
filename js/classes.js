@@ -1,20 +1,45 @@
 'use strict'
 
 class Sprite {
-   constructor({ position, imageSrc }) {
+   constructor({ position, imageSrc, scale = 1, framesMax = 1 }) {
       this.position = position
       this.width = 50
       this.height = 150
       this.image = new Image();
       this.image.src = imageSrc
+      this.scale = scale
+      this.framesMax = framesMax
+      this.framesCurrent = 0
+      this.framesElapsed = 0
+      //change frames speed sprites
+      this.framesHold = 7
    }
 
    draw() {
-      cC.drawImage(this.image, this.position.x, this.position.y)
+      cC.drawImage(
+         this.image,
+         this.framesCurrent * (this.image.width / this.framesMax),
+         0,
+         this.image.width / this.framesMax,
+         this.image.height,
+         this.position.x,
+         this.position.y,
+         (this.image.width / this.framesMax) * this.scale,
+         this.image.height * this.scale,
+      )
    }
 
    update() {
       this.draw()
+      this.framesElapsed++
+      //loops Sprites
+      if (this.framesElapsed % this.framesHold === 0) {
+         if (this.framesCurrent < this.framesMax - 1) {
+            this.framesCurrent++
+         } else {
+            this.framesCurrent = 0
+         }
+      }
    }
 }
 

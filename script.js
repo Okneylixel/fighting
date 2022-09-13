@@ -1,23 +1,35 @@
 'use strict';
 
 const canvas = document.querySelector('canvas')
-const cC = canvas.getContext('2d');
+const cC = canvas.getContext('2d')
 
-canvas.width = 1024;
-canvas.height = 576;
+canvas.width = 1024
+canvas.height = 576
 
-cC.fillRect(0, 0, canvas.width, canvas.height);
+cC.fillRect(0, 0, canvas.width, canvas.height)
 
-const gravity = 0.7;
+const gravity = 0.7
 
-//-----------Hit Box---------
+// Sprites BACKGROUND
 const background = new Sprite({
    position: {
       x: 0,
       y: 0,
    },
-   imageSrc: './img/background.png'
+   imageSrc: './img/background.png',
 })
+// Sprites background SHOP
+const shop = new Sprite({
+   position: {
+      x: 625,
+      y: 130,
+   },
+   imageSrc: './img/shop.png',
+   scale: 2.75,
+   framesMax: 6,
+})
+
+//-----------Hit Box---------
 const player = new Fighter({
    position: {
       x: 0,
@@ -76,6 +88,7 @@ function animate() {
    cC.fillStyle = 'black';
    cC.fillRect(0, 0, canvas.width, canvas.height)
    background.update()
+   shop.update()
    player.update();
    enemy.update();
 
