@@ -67,6 +67,10 @@ const player = new Fighter({
          imageSrc: './img/samuraiMack/Fall.png',
          framesMax: 2,
       },
+      attack1: {
+         imageSrc: './img/samuraiMack/Attack1.png',
+         framesMax: 6,
+      },
    }
 })
 
@@ -174,7 +178,7 @@ function animate() {
 }
 animate();
 
-//------------Moving----------------
+//******************************MOVING*************************** */
 
 
 window.addEventListener('keydown', (event) => {
