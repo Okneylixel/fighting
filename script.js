@@ -18,6 +18,7 @@ const background = new Sprite({
    },
    imageSrc: './img/background.png',
 })
+
 // Sprites background SHOP
 const shop = new Sprite({
    position: {
@@ -178,6 +179,8 @@ function animate() {
    cC.fillRect(0, 0, canvas.width, canvas.height)
    background.update()
    shop.update()
+   cC.fillStyle = 'rgba(255, 255, 255, 0.1)'
+   cC.fillRect(0, 0, canvas.width, canvas.height)
    player.update();
    enemy.update();
 
@@ -231,7 +234,9 @@ function animate() {
       enemy.takeHit()
       player.isAttacking = false;
       // enemy.health -= 20 
-      document.querySelector('#enemyHealth').style.width = enemy.health + '%'
+      gsap.to('#enemyHealth', {         // cdnjs library gsap
+         width: enemy.health + '%'
+      })
    }
    //if player misses
    if (player.isAttacking && player.framesCurrent === 4) {
@@ -249,7 +254,9 @@ function animate() {
       player.takeHit()
       enemy.isAttacking = false;
       // player.health -= 20
-      document.querySelector('#playerHealth').style.width = player.health + '%'
+      gsap.to('#playerHealth', {         // cdnjs library gsap
+         width: player.health + '%'
+      })
    }
    //if enemy misses
    if (enemy.isAttacking && enemy.framesCurrent === 2) {

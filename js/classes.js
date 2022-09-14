@@ -19,7 +19,7 @@ class Sprite {
       this.framesCurrent = 0
       this.framesElapsed = 0
       //change frames speed sprites
-      this.framesHold = 7
+      this.framesHold = 10
       this.offset = offset
    }
 
@@ -37,7 +37,7 @@ class Sprite {
       )
    }
 
-   animatedFrames() {
+   animateFrames() {
       this.framesElapsed++
       //loops Sprites
       if (this.framesElapsed % this.framesHold === 0) {
@@ -51,7 +51,7 @@ class Sprite {
 
    update() {
       this.draw()
-      this.animatedFrames()
+      this.animateFrames()
    }
 }
 
@@ -95,7 +95,7 @@ class Fighter extends Sprite {
       this.framesCurrent = 0
       this.framesElapsed = 0
       //change frames speed sprites
-      this.framesHold = 5
+      this.framesHold = 15
       this.sprites = sprites
       this.dead = false
 
@@ -107,7 +107,9 @@ class Fighter extends Sprite {
 
    update() {
       this.draw()
-      if (!this.dead) this.animatedFrames()
+      if (!this.dead) this.animateFrames()
+
+
       // atack boxes
       this.attackBox.position.x = this.position.x + this.attackBox.offset.x
       this.attackBox.position.y = this.position.y + this.attackBox.offset.y
@@ -122,6 +124,7 @@ class Fighter extends Sprite {
 
       this.position.x += this.velocity.x
       this.position.y += this.velocity.y
+
       // gravity function
       if (this.position.y + this.height + this.velocity.y >= canvas.height - 96) {
          this.velocity.y = 0
@@ -153,12 +156,14 @@ class Fighter extends Sprite {
       if (
          this.image === this.sprites.attack1.image &&
          this.framesCurrent < this.sprites.attack1.framesMax - 1
-      ) return
+      )
+         return
 
       // overriding when fighter gets hit
       if (this.image === this.sprites.takeHit.image &&
          this.framesCurrent < this.sprites.takeHit.framesMax - 1
-      ) return
+      )
+         return
 
       switch (sprite) {
          case 'idle':
