@@ -2,3 +2,87 @@
    box-sizing: border-box;
    font-family: 'Press Start 2P', cursive;
 }
+
+.game-container {
+   position: relative;
+   display: inline-block;
+}
+
+.hb-timer-container {
+   position: absolute;
+   display: flex;
+   width: 100%;
+   align-items: center;
+   padding: 20px;
+}
+
+.style-player-hp {
+   position: relative;
+   width: 100%;
+   display: flex;
+   justify-content: flex-end;
+   border-top: 4px solid white;
+   border-left: 4px solid white;
+   border-bottom: 4px solid white;
+}
+
+.dmg-player-hp {
+   background-color: red;
+   height: 30px;
+   width: 100%;
+}
+
+#playerHealth {
+   position: absolute;
+   background: #818CF8;
+   top: 0;
+   right: 0;
+   bottom: 0;
+   width: 100%;
+}
+
+.style-enemy-hp {
+   position: relative;
+   width: 100%;
+   border-top: 4px solid white;
+   border-right: 4px solid white;
+   border-bottom: 4px solid white;
+}
+
+.dmg-enemy-hp {
+   background-color: red;
+   height: 30px;
+}
+
+#enemyHealth {
+   position: absolute;
+   background: #818CF8;
+   top: 0;
+   right: 0;
+   bottom: 0;
+   left: 0;
+}
+
+#displayText {
+   position: absolute;
+   color: white;
+   align-items: center;
+   justify-content: center;
+   top: 0;
+   left: 0;
+   bottom: 40vh;
+   right: 0;
+   display: none;
+}
+
+#timer {
+   border: 4px solid white;
+   color: white;
+   background-color: black;
+   width: 100px;
+   height: 50px;
+   flex-shrink: 0;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+}
