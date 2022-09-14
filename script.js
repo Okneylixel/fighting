@@ -71,6 +71,10 @@ const player = new Fighter({
          imageSrc: './img/samuraiMack/Attack1.png',
          framesMax: 6,
       },
+      takeHit: {
+         imageSrc: './img/samuraiMack/Take Hit - white silhouette.png',
+         framesMax: 4,
+      },
    },
    attackBox: {
       offset: {
@@ -124,6 +128,10 @@ const enemy = new Fighter({
          imageSrc: './img/kenji/Attack1.png',
          framesMax: 4,
       },
+      takeHit: {
+         imageSrc: './img/kenji/Take hit.png',
+         framesMax: 3,
+      },
    },
    attackBox: {
       offset: {
@@ -135,7 +143,7 @@ const enemy = new Fighter({
    },
 })
 
-//***************************ANIMATION LOOP************************* */
+//***************************ANIMATION LOOP**************************/
 const keys = {
    a: {
       pressed: false
@@ -201,8 +209,10 @@ function animate() {
       enemy.switchSprite('fall')
    }
 
-   //detect for collision
-   //player
+   //***************************DETECT COLLISION**************************/
+
+
+   //-----PLAYER
    if (rectangularCollision({
       rectangle1: player,
       rectangle2: enemy,
@@ -210,15 +220,17 @@ function animate() {
       player.isAttacking &&
       player.framesCurrent === 4 // on 4 frames activation attack
    ) {
+      enemy.takeHit()
       player.isAttacking = false;
-      enemy.health -= 20
+      // enemy.health -= 20 
       document.querySelector('#enemyHealth').style.width = enemy.health + '%'
    }
    //if player misses
    if (player.isAttacking && player.framesCurrent === 4) {
       player.isAttacking = false
    }
-   //enemy
+
+   //-----ENEMY
    if (rectangularCollision({
       rectangle1: enemy,
       rectangle2: player,
@@ -226,14 +238,17 @@ function animate() {
       enemy.isAttacking &&
       enemy.framesCurrent === 2  // on 2 frames activation attack
    ) {
+      player.takeHit()
       enemy.isAttacking = false;
-      player.health -= 20
+      // player.health -= 20
       document.querySelector('#playerHealth').style.width = player.health + '%'
    }
    //if enemy misses
    if (enemy.isAttacking && enemy.framesCurrent === 2) {
       enemy.isAttacking = false
    }
+
+
    //end game when lost all health
    if (enemy.health <= 0 || player.health <= 0) {
       determineWinner({ player, enemy, timerId })
@@ -241,7 +256,7 @@ function animate() {
 }
 animate();
 
-//******************************MOVING*************************** */
+//**********************************MOVING*********************************/
 
 
 window.addEventListener('keydown', (event) => {
